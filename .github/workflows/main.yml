@@ -17,8 +17,8 @@ jobs:
             -H "Authorization: Bearer $RESEND_API_KEY" \
             -H 'Content-Type: application/json' \
             -d '{
-              "from": "onboarding@resend.dev",
-              "to": "your-email@example.com",
+              "from": "sleepezo@semboyan.detacommunity.com",
+              "to": "ahmadkhairicg@gmail.com",
               "subject": "Hello from GitHub Actions",
               "html": "<p>Your GitHub Action workflow ran successfully!</p>"
             }'
