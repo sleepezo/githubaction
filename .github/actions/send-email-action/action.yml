@@ -1,0 +1,31 @@
+name: 'Send Email via Resend'
+description: 'Sends an email using Resend API'
+
+# Inputs passed in from the workflow
+inputs:
+  resend_api_key:
+    description: 'Resend API Key'
+    required: true
+  to_email:
+    description: 'Recipient Email Address'
+    required: true
+  subject:
+    description: 'Email Subject'
+    required: false
+    default: 'Hello from GitHub Actions'
+
+runs:
+  using: 'composite' # Indicates a composite step-based action
+  steps:
+    - name: Call Resend API
+      shell: bash
+      run: |
+        curl -X POST 'https://api.resend.com/emails' \
+          -H "Authorization: Bearer ${{ inputs.resend_api_key }}" \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "from": "kai@semboyan.detacommunity.com",
+            "to": "${{ inputs.to_email }}",
+            "subject": "${{ inputs.subject }}",
+            "html": "<p>Your GitHub Action triggered successfully! Sleepey</p>"
+          }'
